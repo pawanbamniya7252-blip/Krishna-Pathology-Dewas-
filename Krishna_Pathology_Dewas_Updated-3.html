@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KRISHNA PATHOLOGY DEWAS</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f7fb;color:#172033}
+header{background:linear-gradient(135deg,#0757c9,#00a6d6);color:#fff;padding:32px 18px;text-align:center}
+h1{margin:0 0 8px;font-size:30px}header p{margin:6px 0}
+main{max-width:950px;margin:auto;padding:16px}.card{background:#fff;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 4px 18px #00000012}
+h2{margin-top:0;color:#0757c9}.btn{display:inline-block;background:#0757c9;color:#fff;padding:12px 18px;border-radius:9px;text-decoration:none;margin-top:8px;border:0;cursor:pointer;font-size:16px}
+input,select{width:100%;padding:13px;margin:7px 0 12px;border:1px solid #ccd5e0;border-radius:9px;font-size:16px}
+table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #e4e8ee;text-align:left}th{background:#eef5ff}td:last-child{font-weight:bold}
+.notice{background:#fff7d6;padding:12px;border-radius:10px}.result{background:#eaf7ee;padding:14px;border-radius:10px;margin-top:12px;display:none}
+.search{margin-bottom:10px}.small{font-size:14px;color:#667}
+footer{text-align:center;padding:24px;color:#667}
+</style>
+</head>
+<body>
+<header>
+<h1>KRISHNA PATHOLOGY DEWAS</h1>
+<p>43B, Avantika Nagar Makai Road, Dewas</p>
+<p>📞 7828866305</p>
+<p>Avantika Hospital Dewas</p>
+<a class="btn" href="tel:7828866305">Call Now</a>
+</header>
+
+<main>
+<section class="card">
+<h2>Online Test Booking</h2>
+<p class="small">Booking request WhatsApp पर भेजी जाएगी. Payment: 60% booking पर, बाकी 40% report download से पहले. पूरा payment booking या sample collection पर भी किया जा सकता है.</p>
+<label>Patient Name</label><input id="name" placeholder="Patient name">
+<label>Mobile Number</label><input id="mobile" inputmode="numeric" placeholder="Mobile number">
+<label>Select Test</label>
+<select id="test" onchange="calc()">
+<option value="">-- Select Test --</option>
+<option data-price="80">FBS — ₹80</option>
+<option data-price="80">PPBS — ₹80</option>
+<option data-price="80">RBS — ₹80</option>
+<option data-price="100">Blood Group — ₹100</option>
+<option data-price="200">ALP — ₹200</option>
+<option data-price="100">ESR — ₹100</option>
+<option data-price="200">TSH — ₹200</option>
+<option data-price="200">Total Protein — ₹200</option>
+<option data-price="120">Urine Routine — ₹120</option>
+<option data-price="250">CBC — ₹250</option>
+<option data-price="1500">Lipid Profile Extended — ₹1500</option>
+<option data-price="650">HBsAg Confirmation — ₹650</option>
+<option data-price="600">Vitamin B12 — ₹600</option>
+</select>
+<label>Sample Collection</label>
+<select id="collection" onchange="calc()">
+<option value="lab">Lab visit</option>
+<option value="home">Home collection (₹50 if test price is below ₹300 and within 15 km)</option>
+</select>
+<div id="summary" class="result"></div>
+<button class="btn" onclick="book()">Send Booking on WhatsApp</button>
+</section>
+
+<section class="card">
+<h2>Test Prices — MRP Only</h2>
+<input class="search" id="search" oninput="filterTests()" placeholder="Search test name...">
+<table id="tests"><thead><tr><th>Test</th><th>MRP</th></tr></thead>
+<tbody>
+<tr><td>FBS</td><td>₹80</td></tr><tr><td>PPBS</td><td>₹80</td></tr><tr><td>RBS</td><td>₹80</td></tr>
+<tr><td>Blood Group</td><td>₹100</td></tr><tr><td>ALP</td><td>₹200</td></tr><tr><td>ESR</td><td>₹100</td></tr>
+<tr><td>TSH</td><td>₹200</td></tr><tr><td>Total Protein</td><td>₹200</td></tr><tr><td>Urine Routine</td><td>₹120</td></tr>
+<tr><td>CBC</td><td>₹250</td></tr><tr><td>Lipid Profile Extended</td><td>₹1500</td></tr><tr><td>HBsAg Confirmation</td><td>₹650</td></tr>
+<tr><td>Vitamin B12</td><td>₹600</td></tr>
+</tbody></table>
+</section>
+
+<section class="card">
+<h2>Home Sample Collection</h2>
+<p>₹50 flat charge for tests/samples below ₹300 within 15 km.</p>
+</section>
+
+<section class="card">
+<h2>Payment & Report</h2>
+<p>60% payment is required at booking. Remaining 40% is required before report download. Full payment can also be made at booking or sample collection.</p>
+<div class="notice">Report download will be enabled after full payment. Online payment gateway/UPI details can be added after the lab's UPI ID/payment details are provided.</div>
+</section>
+
+<section class="card">
+<h2>Automatic Reminders</h2>
+<ul><li>TFT, HbA1c & Lipid Profile — every 3 months</li>
+<li>Full Body Package — every 6 months</li></ul>
+</section>
+
+<section class="card">
+<h2>Festival Offers</h2>
+<p>10% off and Buy 2 Get 1 Free. Offer can be activated/deactivated manually.</p>
+</section>
+
+<section class="card">
+<h2>Contact</h2>
+<p><b>Phone:</b> 7828866305</p>
+<p><b>Address:</b> 43B, Avantika Nagar Makai Road, Dewas</p>
+<a class="btn" href="https://www.google.com/maps/search/?api=1&query=Avantika+Hospital+Dewas">Open Location</a>
+</section>
+</main>
+
+<footer>KRISHNA PATHOLOGY DEWAS © 2026</footer>
+
+<script>
+function calc(){
+ const s=document.getElementById('test'), opt=s.options[s.selectedIndex];
+ const price=Number(opt.dataset.price||0);
+ if(!price){document.getElementById('summary').style.display='none';return;}
+ const home=document.getElementById('collection').value==='home';
+ const charge=home && price<300 ? 50 : 0;
+ const total=price+charge, advance=Math.round(total*.60), balance=total-advance;
+ const box=document.getElementById('summary');
+ box.style.display='block';
+ box.innerHTML='<b>Test:</b> '+opt.text+'<br><b>Total:</b> ₹'+total+'<br><b>60% booking:</b> ₹'+advance+'<br><b>Remaining 40%:</b> ₹'+balance+(charge?' <br><b>Home collection:</b> ₹50':'');
+}
+function book(){
+ const name=document.getElementById('name').value.trim();
+ const mobile=document.getElementById('mobile').value.trim();
+ const s=document.getElementById('test'), opt=s.options[s.selectedIndex];
+ if(!name||!mobile||!opt.value){alert('Please enter patient name, mobile number and select a test.');return;}
+ const price=Number(opt.dataset.price), home=document.getElementById('collection').value==='home';
+ const charge=home&&price<300?50:0,total=price+charge,advance=Math.round(total*.60);
+ const msg='KRISHNA PATHOLOGY DEWAS Booking%0APatient: '+encodeURIComponent(name)+'%0AMobile: '+encodeURIComponent(mobile)+'%0ATest: '+encodeURIComponent(opt.text)+'%0ATotal: ₹'+total+'%0A60%25 Booking Amount: ₹'+advance+'%0ACollection: '+(home?'Home collection':'Lab visit');
+ window.open('https://wa.me/917828866305?text='+msg,'_blank');
+}
+function filterTests(){
+ const q=document.getElementById('search').value.toLowerCase();
+ document.querySelectorAll('#tests tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?'':'none');
+}
+</script>
+</body>
+</html>
