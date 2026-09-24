@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#0757c9">
+<title>KRISHNA PATHOLOGY DEWAS</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#f3f7fb;color:#172033}header{background:linear-gradient(135deg,#0757c9,#00a6d6);color:#fff;padding:34px 16px;text-align:center}h1{margin:0 0 8px;font-size:30px}h2{margin-top:0;color:#0757c9}.sub{margin:6px 0}.wrap{max-width:1000px;margin:auto;padding:14px}.card{background:#fff;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 4px 18px #0001}.btn{display:inline-block;background:#0757c9;color:#fff;padding:12px 17px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-size:16px;margin:5px 4px 5px 0}.btn.green{background:#12833b}.btn.whatsapp{background:#159447}.btn.light{background:#eef5ff;color:#0757c9}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.info{background:#f7faff;border:1px solid #e3ebf6;border-radius:12px;padding:14px}.small{font-size:14px;color:#667}.notice{background:#fff7d6;padding:13px;border-radius:10px}.ok{background:#eaf7ee;padding:13px;border-radius:10px}.result{background:#eaf7ee;padding:14px;border-radius:10px;margin-top:12px;display:none}label{font-weight:bold;display:block;margin-top:8px}input,select{width:100%;padding:13px;margin:7px 0 12px;border:1px solid #ccd5e0;border-radius:9px;font-size:16px}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #e4e8ee;text-align:left}th{background:#eef5ff}.search{margin-bottom:10px}.price{font-weight:bold}.topnav{position:sticky;top:0;background:#fff;padding:8px;text-align:center;box-shadow:0 2px 8px #0001;z-index:5}.topnav a{margin:0 5px;color:#0757c9;text-decoration:none;font-weight:bold;font-size:14px}footer{text-align:center;padding:26px;color:#667}.pill{display:inline-block;padding:6px 10px;border-radius:99px;background:#eef5ff;color:#0757c9;margin:3px;font-size:13px}.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+<h1>KRISHNA PATHOLOGY DEWAS</h1>
+<p class="sub">43B, Avantika Nagar Makai Road, Dewas</p>
+<p class="sub">📞 7828866305</p>
+<p class="sub">Avantika Hospital Dewas</p>
+<a class="btn" href="tel:7828866305">📞 Call Now</a>
+<a class="btn whatsapp" href="https://wa.me/917828866305" target="_blank">💬 WhatsApp</a>
+</header>
+<nav class="topnav"><a href="#booking">Booking</a><a href="#prices">Tests</a><a href="#payment">Payment</a><a href="#report">Report</a><a href="#contact">Contact</a></nav>
+<main class="wrap">
+<section class="card" id="booking">
+<h2>🧪 Online Test Booking</h2>
+<p class="small">Booking पर 60% payment. Report download से पहले बाकी 40%. पूरा payment booking या sample collection के समय भी किया जा सकता है.</p>
+<label>Patient Name</label><input id="name" placeholder="Patient name">
+<label>Mobile Number</label><input id="mobile" inputmode="numeric" maxlength="10" placeholder="10 digit mobile number">
+<label>Select Test</label>
+<select id="test" onchange="calc()"><option value="">-- Select Test --</option></select>
+<label>Sample Collection</label>
+<select id="collection" onchange="calc()"><option value="lab">Lab visit</option><option value="home">Home collection — ₹50 if test price is below ₹300 and within 15 km</option></select>
+<div id="summary" class="result"></div>
+<button class="btn whatsapp" onclick="book()">💬 Send Booking on WhatsApp</button>
+</section>
+
+<section class="card" id="prices">
+<h2>💰 Test Prices — MRP Only</h2>
+<p class="small">इस single-file version में वही MRP rates रखे गए हैं जो अभी उपलब्ध/पुष्ट हैं. नई catalog entries बाद में इसी file में जोड़ी जा सकती हैं.</p>
+<input class="search" id="search" oninput="filterTests()" placeholder="Search test name...">
+<table id="tests"><thead><tr><th>Test</th><th>MRP</th></tr></thead><tbody></tbody></table>
+</section>
+
+<section class="card"><h2>🏠 Home Sample Collection</h2><div class="ok">₹50 flat charge for tests/samples below ₹300, within 15 km from the lab.</div></section>
+
+<section class="card" id="payment">
+<h2>💳 Payment</h2>
+<div class="grid">
+<div class="info"><b>UPI ID</b><br>7828866305@ybl<br><button class="btn" onclick="payUPI()">Pay by UPI</button></div>
+<div class="info"><b>Payment Rule</b><br>60% at booking + remaining 40% before report download.</div>
+<div class="info"><b>Full Payment</b><br>Full payment can also be made at booking or sample collection.</div>
+</div>
+<p class="small">UPI button आपके फोन में उपलब्ध UPI app को खोलने की कोशिश करेगा. Payment confirmation lab द्वारा verify की जाएगी.</p>
+</section>
+
+<section class="card" id="report">
+<h2>📄 Report Request</h2>
+<label>Mobile Number</label><input id="reportMobile" inputmode="numeric" maxlength="10" placeholder="Patient mobile number">
+<label>Report / Booking ID</label><input id="reportId" placeholder="Report or booking ID">
+<button class="btn whatsapp" onclick="requestReport()">💬 Request Report on WhatsApp</button>
+<div class="notice" style="margin-top:10px">Report download/payment status lab verification के बाद तय होगा.</div>
+</section>
+
+<section class="card"><h2>🔔 Automatic Reminders</h2><div><span class="pill">TFT — 3 months</span><span class="pill">HbA1c — 3 months</span><span class="pill">Lipid Profile — 3 months</span><span class="pill">Full Body Package — 6 months</span></div><p class="small">ये reminder rules website पर प्रदर्शित हैं. वास्तविक SMS/WhatsApp automatic sending के लिए अलग notification service/backend की जरूरत होगी.</p></section>
+
+<section class="card"><h2>🎉 Festival Offers</h2><div class="grid"><div class="info"><b>10% OFF</b><br>Offer manually activate/deactivate किया जा सकता है.</div><div class="info"><b>Buy 2 Get 1 Free</b><br>Offer manually activate/deactivate किया जा सकता है.</div></div></section>
+
+<section class="card" id="contact"><h2>📍 Contact & Location</h2><p><b>KRISHNA PATHOLOGY DEWAS</b></p><p>43B, Avantika Nagar Makai Road, Dewas</p><p>Phone: 7828866305</p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Avantika+Hospital+Dewas" target="_blank">📍 Open Location</a></section>
+</main>
+<footer>KRISHNA PATHOLOGY DEWAS © 2026</footer>
+<script>
+const tests=[
+['FBS',80],['PPBS',80],['RBS',80],['Blood Group',100],['ALP',200],['ESR',100],['TSH',200],['Total Protein',200],['Urine Routine',120],['CBC',250],['Lipid Profile Extended',1500],['HBsAg Confirmation',650],['Vitamin B12',600]
+];
+const sel=document.getElementById('test'),tbody=document.querySelector('#tests tbody');
+tests.forEach(([name,price])=>{const o=document.createElement('option');o.value=name;o.dataset.price=price;o.textContent=name+' — ₹'+price;sel.appendChild(o);const r=document.createElement('tr');r.innerHTML='<td>'+name+'</td><td class="price">₹'+price+'</td>';tbody.appendChild(r)});
+function calc(){const opt=sel.options[sel.selectedIndex],price=Number(opt.dataset.price||0);const box=document.getElementById('summary');if(!price){box.style.display='none';return}const home=document.getElementById('collection').value==='home';const charge=home&&price<300?50:0,total=price+charge,advance=Math.round(total*.6),balance=total-advance;box.style.display='block';box.innerHTML='<b>Test:</b> '+opt.text+'<br><b>Total:</b> ₹'+total+'<br><b>60% booking:</b> ₹'+advance+'<br><b>Remaining 40%:</b> ₹'+balance+(charge?'<br><b>Home collection:</b> ₹50':'')}
+function book(){const name=document.getElementById('name').value.trim(),mobile=document.getElementById('mobile').value.trim(),opt=sel.options[sel.selectedIndex];if(!name||!mobile||!opt.value){alert('Patient name, mobile number और test select करें.');return}if(!/^\d{10}$/.test(mobile)){alert('10 digit mobile number डालें.');return}const price=Number(opt.dataset.price),home=document.getElementById('collection').value==='home',charge=home&&price<300?50:0,total=price+charge,advance=Math.round(total*.6);const msg='KRISHNA PATHOLOGY DEWAS Booking\nPatient: '+name+'\nMobile: '+mobile+'\nTest: '+opt.value+'\nTotal: ₹'+total+'\n60% Booking Amount: ₹'+advance+'\nCollection: '+(home?'Home collection':'Lab visit');window.open('https://wa.me/917828866305?text='+encodeURIComponent(msg),'_blank')}
+function payUPI(){const uri='upi://pay?pa=7828866305%40ybl&pn=KRISHNA%20PATHOLOGY%20DEWAS&cu=INR';window.location.href=uri}
+function requestReport(){const m=document.getElementById('reportMobile').value.trim(),id=document.getElementById('reportId').value.trim();if(!m||!id){alert('Mobile number और Report/Booking ID डालें.');return}const msg='KRISHNA PATHOLOGY DEWAS Report Request\nMobile: '+m+'\nReport/Booking ID: '+id;window.open('https://wa.me/917828866305?text='+encodeURIComponent(msg),'_blank')}
+function filterTests(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('#tests tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?'':'none')}
+</script>
+</body>
+</html>
